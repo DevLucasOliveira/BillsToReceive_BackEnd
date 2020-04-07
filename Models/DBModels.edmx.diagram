@@ -4,14 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="401c4f5a87f5417cb11723fd0b7c21b7" Name="Diagram1">
-        <EntityTypeShape EntityType="ContasDBModel.Customer" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ContasDBModel.Item" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+      <Diagram DiagramId="1a1c20b94f914ffca9af42a7a4240c50" Name="Diagram1">
+        <EntityTypeShape EntityType="ContasDBModel.Customer" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContasDBModel.Item" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ContasDBModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ContasDBModel.OrderItems" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContasDBModel.OrderItem" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="ContasDBModel.FK_Order_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="ContasDBModel.FK_OrderItems_Item" ManuallyRouted="false" />
-        <AssociationConnector Association="ContasDBModel.FK_Order_Order" ManuallyRouted="false" />
         <AssociationConnector Association="ContasDBModel.FK_OrderItems_Order" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

@@ -17,19 +17,17 @@ namespace WebAPIcontas.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.OrderItems = new HashSet<OrderItems>();
+            this.OrderItems = new HashSet<OrderItem>();
         }
     
         public long OrderID { get; set; }
         public string OrderNo { get; set; }
         public Nullable<int> CustomerID { get; set; }
-        public string PMethod { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<decimal> GTotal { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual Order Order1 { get; set; }
-        public virtual Order Order2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItems> OrderItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

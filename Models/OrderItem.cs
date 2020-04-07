@@ -12,12 +12,13 @@ namespace WebAPIcontas.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderItems
+    public partial class OrderItem
     {
         public long OrderItemID { get; set; }
         public Nullable<long> OrderID { get; set; }
         public Nullable<int> ItemID { get; set; }
         public Nullable<int> Quantity { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Item Item { get; set; }
         public virtual Order Order { get; set; }

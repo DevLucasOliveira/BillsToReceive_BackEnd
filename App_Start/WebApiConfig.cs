@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace WebAPIcontas
 {
@@ -9,6 +10,7 @@ namespace WebAPIcontas
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors(new EnableCorsAttribute("http://localhost:4200/order", headers: "*", methods: "*"));
             // Web API configuration and services
 
             // Web API routes

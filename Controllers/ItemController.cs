@@ -17,12 +17,12 @@ namespace WebAPIcontas.Controllers
         private DBModel db = new DBModel();
 
         // GET: api/Item
-        public IQueryable<Item> GetItem()
+        public IQueryable<Item> GetItems()
         {
-            return db.Item;
+            return db.Items;
         }
 
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

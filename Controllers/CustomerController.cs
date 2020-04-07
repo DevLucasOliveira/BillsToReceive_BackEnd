@@ -17,11 +17,10 @@ namespace WebAPIcontas.Controllers
         private DBModel db = new DBModel();
 
         // GET: api/Customer
-        public IQueryable<Customer> GetCustomer()
+        public IQueryable<Customer> GetCustomers()
         {
-            return db.Customer;
+            return db.Customers;
         }
-
 
         protected override void Dispose(bool disposing)
         {

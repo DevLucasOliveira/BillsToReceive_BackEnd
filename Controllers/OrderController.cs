@@ -17,16 +17,16 @@ namespace WebAPIcontas.Controllers
         private DBModel db = new DBModel();
 
         // GET: api/Order
-        public IQueryable<Order> GetOrder()
+        public IQueryable<Order> GetOrders()
         {
-            return db.Order;
+            return db.Orders;
         }
 
         // GET: api/Order/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(long id)
         {
-            Order order = db.Order.Find(id);
+            Order order = db.Orders.Find(id);
             if (order == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace WebAPIcontas.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Order.Add(order);
+            db.Orders.Add(order);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = order.OrderID }, order);
@@ -89,13 +89,13 @@ namespace WebAPIcontas.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(long id)
         {
-            Order order = db.Order.Find(id);
+            Order order = db.Orders.Find(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            db.Order.Remove(order);
+            db.Orders.Remove(order);
             db.SaveChanges();
 
             return Ok(order);
@@ -112,7 +112,7 @@ namespace WebAPIcontas.Controllers
 
         private bool OrderExists(long id)
         {
-            return db.Order.Count(e => e.OrderID == id) > 0;
+            return db.Orders.Count(e => e.OrderID == id) > 0;
         }
     }
 }

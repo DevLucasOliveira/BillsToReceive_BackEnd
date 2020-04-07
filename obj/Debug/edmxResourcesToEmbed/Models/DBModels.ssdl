@@ -5,13 +5,13 @@
       <PropertyRef Name="CustomerID" />
     </Key>
     <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Item">
     <Key>
-      <PropertyRef Name="itemID" />
+      <PropertyRef Name="ItemID" />
     </Key>
-    <Property Name="itemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
@@ -22,7 +22,7 @@
     <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderNo" Type="varchar" MaxLength="50" />
     <Property Name="CustomerID" Type="int" />
-    <Property Name="PMethod" Type="varchar" MaxLength="50" />
+    <Property Name="Date" Type="date" />
     <Property Name="GTotal" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="OrderItems">
@@ -33,6 +33,7 @@
     <Property Name="OrderID" Type="bigint" />
     <Property Name="ItemID" Type="int" />
     <Property Name="Quantity" Type="int" />
+    <Property Name="Date" Type="date" />
   </EntityType>
   <Association Name="FK_Order_Customer">
     <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
@@ -46,24 +47,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Order_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="Order1" Type="Self.Order" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="OrderID" />
-      </Principal>
-      <Dependent Role="Order1">
-        <PropertyRef Name="OrderID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_OrderItems_Item">
     <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
     <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Item">
-        <PropertyRef Name="itemID" />
+        <PropertyRef Name="ItemID" />
       </Principal>
       <Dependent Role="OrderItems">
         <PropertyRef Name="ItemID" />
@@ -90,10 +79,6 @@
     <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Order" EntitySet="Order" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_Order" Association="Self.FK_Order_Order">
-      <End Role="Order" EntitySet="Order" />
-      <End Role="Order1" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderItems_Item" Association="Self.FK_OrderItems_Item">
       <End Role="Item" EntitySet="Item" />

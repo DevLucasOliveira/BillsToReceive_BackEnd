@@ -79,8 +79,11 @@ C:\Dev\Contasareceber\WebAPIcontas\bin\System.Web.WebPages.Deployment.xml
 C:\Dev\Contasareceber\WebAPIcontas\bin\System.Web.WebPages.Razor.xml
 C:\Dev\Contasareceber\WebAPIcontas\bin\Antlr3.Runtime.pdb
 C:\Dev\Contasareceber\WebAPIcontas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Dev\Contasareceber\WebAPIcontas\obj\Debug\WebAPIcontas.csprojAssemblyReference.cache
 C:\Dev\Contasareceber\WebAPIcontas\obj\Debug\WebAPIcontas.csproj.CoreCompileInputs.cache
 C:\Dev\Contasareceber\WebAPIcontas\obj\Debug\WebAPIcontas.csproj.CopyComplete
 C:\Dev\Contasareceber\WebAPIcontas\obj\Debug\WebAPIcontas.dll
 C:\Dev\Contasareceber\WebAPIcontas\obj\Debug\WebAPIcontas.pdb
+C:\Dev\Contasareceber\WebAPIcontas\obj\Debug\WebAPIcontas.csprojAssemblyReference.cache
+C:\Dev\Contasareceber\WebAPIcontas\bin\System.Web.Cors.dll
+C:\Dev\Contasareceber\WebAPIcontas\bin\System.Web.Http.Cors.dll
+C:\Dev\Contasareceber\WebAPIcontas\bin\System.Web.Http.Cors.xml
