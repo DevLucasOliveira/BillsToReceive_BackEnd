@@ -14,20 +14,14 @@ namespace WebAPIcontas.Models
     
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            this.OrderItems = new HashSet<OrderItem>();
-        }
+        public int IdOrder { get; set; }
+        public int IdClient { get; set; }
+        public string ProductName { get; set; }
+        public decimal Price { get; set; }
+        public short Quantity { get; set; }
+        public System.DateTime Date { get; set; }
+        public decimal Total { get; set; }
     
-        public long OrderID { get; set; }
-        public string OrderNo { get; set; }
-        public Nullable<int> CustomerID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<decimal> GTotal { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

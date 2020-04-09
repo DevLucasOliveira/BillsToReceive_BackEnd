@@ -10,7 +10,7 @@ namespace WebAPIcontas
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors(new EnableCorsAttribute("http://localhost:4200/order", headers: "*", methods: "*"));
+            config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
             // Web API configuration and services
 
             // Web API routes
@@ -21,6 +21,9 @@ namespace WebAPIcontas
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+
         }
     }
 }

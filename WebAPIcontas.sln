@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIcontas", "WebAPIcontas.csproj", "{C0E6B70D-F959-43CC-86B2-DEA238115F43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebapiContasaReceber", "WebapiContasaReceber\WebapiContasaReceber.csproj", "{8E69AA5F-327E-492A-A2FC-F8E70BFBFDEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C0E6B70D-F959-43CC-86B2-DEA238115F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0E6B70D-F959-43CC-86B2-DEA238115F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0E6B70D-F959-43CC-86B2-DEA238115F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E69AA5F-327E-492A-A2FC-F8E70BFBFDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E69AA5F-327E-492A-A2FC-F8E70BFBFDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E69AA5F-327E-492A-A2FC-F8E70BFBFDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E69AA5F-327E-492A-A2FC-F8E70BFBFDEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
