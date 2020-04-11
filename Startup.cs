@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WebapiContas.Models;
 using Microsoft.EntityFrameworkCore;
+using WebapiContas.Interfaces;
 using WebapiContas.Repository;
 
 namespace WebapiContas
@@ -37,7 +38,8 @@ namespace WebapiContas
 
 
 
-            services.AddTransient<IContasRepository, ContasRepository>();
+            services.AddTransient<IClientsRepository, ClientsRepository>();
+            services.AddTransient<IOrdersRepository, OrdersRepository>();
             services.AddMvc();
 
         }

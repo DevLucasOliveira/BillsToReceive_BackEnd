@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using WebapiContas.Interfaces;
 using WebapiContas.Models;
-using WebapiContas.Repository;
 
 namespace WebapiContas.Controllers
 {
@@ -11,27 +11,26 @@ namespace WebapiContas.Controllers
     public class ClientsController : Controller
     {
 
-        private readonly IContasRepository _contasRepository;
+        private readonly IClientsRepository _clientRepository;
 
-        public ClientsController(IContasRepository contasRepo)
+        public ClientsController(IClientsRepository contasRepo)
         {
-            _contasRepository = contasRepo;
+            _clientRepository = contasRepo;
         }
 
         [HttpGet]
-        public IEnumerable<Client> GetAllClient()
+        public IEnumerable<Client> GetAll()
         {
-            return _contasRepository.GetAllClient();
+            return _clientRepository.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetClient")]
         public IActionResult GetById(long id)
         {
-            var client = _contasRepository.FindClient(id);
+            var client = _clientRepository.Find(id);
             if (client == null)
-            {
                 return NotFound();
-            }
+            
 
             return new ObjectResult(client);
         }
@@ -41,11 +40,10 @@ namespace WebapiContas.Controllers
         public IActionResult Create([FromBody] Client client)
         {
             if (client == null)
-            {
                 return BadRequest();
-            }
+            
 
-            _contasRepository.AddClient(client);
+            _clientRepository.Add(client);
 
             return CreatedAtRoute("GetClient", new { id = client.IdClient }, client);
 
@@ -58,7 +56,7 @@ namespace WebapiContas.Controllers
             if (client == null || client.IdClient != id)
                 return BadRequest();
 
-            var _client = _contasRepository.FindClient(id);
+            var _client = _clientRepository.Find(id);
 
             if (client == null)
                 return NotFound();
@@ -66,19 +64,19 @@ namespace WebapiContas.Controllers
             _client.Name = client.Name;
             _client.Phone = client.Phone;
 
-            _contasRepository.UpdateClient(_client);
+            _clientRepository.Update(_client);
             return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var client = _contasRepository.FindClient(id);
+            var client = _clientRepository.Find(id);
 
             if (client == null)
                 return NotFound();
 
-            _contasRepository.RemoveClient(id);
+            _clientRepository.Remove(id);
             return new NoContentResult();
         }
 
