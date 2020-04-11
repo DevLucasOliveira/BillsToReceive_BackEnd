@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WebapiContas.Models;
 using Microsoft.EntityFrameworkCore;
+using WebapiContas.Repository;
 
 namespace WebapiContas
 {
@@ -26,7 +27,7 @@ namespace WebapiContas
             //add swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Movies Demo", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bills to receive", Version = "v1" });
             });
 
 
@@ -34,6 +35,9 @@ namespace WebapiContas
             services.AddDbContext<ContasContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("Contasdb")));
 
+
+
+            services.AddTransient<IContasRepository, ContasRepository>();
             services.AddMvc();
 
         }
@@ -52,7 +56,7 @@ namespace WebapiContas
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Movies Demo V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bills to receive");
             });
 
 
