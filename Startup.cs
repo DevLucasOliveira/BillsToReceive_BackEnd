@@ -36,7 +36,11 @@ namespace WebapiContas
             services.AddDbContext<ContasContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("Contasdb")));
 
+            //add cors
+            services.AddCors();
 
+            services.AddMvc();
+       
 
             services.AddTransient<IClientsRepository, ClientsRepository>();
             services.AddTransient<IOrdersRepository, OrdersRepository>();
@@ -63,6 +67,13 @@ namespace WebapiContas
 
 
             app.UseHttpsRedirection();
+
+            //add cors
+            app.UseCors(builder =>
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            );
 
             app.UseRouting();
 

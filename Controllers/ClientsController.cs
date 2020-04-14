@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebapiContas.Interfaces;
 using WebapiContas.Models;
 
@@ -25,12 +26,12 @@ namespace WebapiContas.Controllers
         }
 
         [HttpGet("{id}", Name = "GetClient")]
-        public IActionResult GetById(long id)
+        public IActionResult GetById([FromRoute]long id)
         {
             var client = _clientRepository.Find(id);
             if (client == null)
                 return NotFound();
-            
+
 
             return new ObjectResult(client);
         }
@@ -50,32 +51,23 @@ namespace WebapiContas.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] Client client)
+        [HttpPut]
+        public IActionResult Update([FromBody] Client client)
         {
-            if (client == null || client.IdClient != id)
-                return BadRequest();
-
-            var _client = _clientRepository.Find(id);
-
             if (client == null)
-                return NotFound();
+            {
+                return BadRequest();
+            }
 
-            _client.Name = client.Name;
-            _client.Phone = client.Phone;
+ 
 
-            _clientRepository.Update(_client);
+            _clientRepository.Update(client);
             return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var client = _clientRepository.Find(id);
-
-            if (client == null)
-                return NotFound();
-
             _clientRepository.Remove(id);
             return new NoContentResult();
         }
