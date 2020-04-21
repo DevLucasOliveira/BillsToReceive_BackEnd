@@ -11,6 +11,7 @@ namespace WebapiContas.Interfaces
         void Add(Order item);
         IEnumerable<Order> GetAll();
         Order Find(long id);
+        IEnumerable<Order> GetByIdClient(long idClient);
         void Remove(long id);
         void Update(Order item);
 

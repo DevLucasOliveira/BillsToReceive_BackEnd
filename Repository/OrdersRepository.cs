@@ -26,13 +26,17 @@ namespace WebapiContas.Repository
         {
             return _context.Order.FirstOrDefault(u => u.IdOrder == id);
         }
-
+        
 
         public IEnumerable<Order> GetAll()
         {
             return _context.Order.ToList();
         }
 
+        public IEnumerable<Order> GetByIdClient(long idClient)
+        {
+            return _context.Order.Where(w => w.IdClient == idClient);
+        }
 
         public void Remove(long id)
         {
