@@ -33,10 +33,16 @@ namespace WebapiContas.Repository
 
         public void Remove(long id)
         {
-            var entity = _context.Client.First(u => u.IdClient == id);
-            _context.Client.Remove(entity);
-            _context.SaveChanges();
-
+            try
+            {
+                var entity = _context.Client.First(u => u.IdClient == id);
+                _context.Client.Remove(entity);
+                _context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         public void Update(Client client)
