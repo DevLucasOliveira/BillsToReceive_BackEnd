@@ -51,24 +51,15 @@ namespace WebapiContas.Controllers
             return CreatedAtRoute("GetOrder", new { id = order.IdOrder }, order);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] Order order)
+        [HttpPut]
+        public IActionResult Update([FromBody] Order order)
         {
-            if (order == null || order.IdOrder != id)
-                return BadRequest();
-
-            var _order = _orderRepository.Find(id);
 
             if (order == null)
                 return NotFound();
 
-            _order.ProductName = order.ProductName;
-            _order.Price = order.Price;
-            _order.Quantity = order.Quantity;
-            _order.Date = order.Date;
-            _order.Total = order.Total;
 
-            _orderRepository.Update(_order);
+            _orderRepository.Update(order);
             return new NoContentResult();
         }
 

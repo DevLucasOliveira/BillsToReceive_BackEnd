@@ -55,11 +55,8 @@ namespace WebapiContas.Controllers
         public IActionResult Update([FromBody] Client client)
         {
             if (client == null)
-            {
-                return BadRequest();
-            }
+                return NotFound();
 
- 
 
             _clientRepository.Update(client);
             return new NoContentResult();
