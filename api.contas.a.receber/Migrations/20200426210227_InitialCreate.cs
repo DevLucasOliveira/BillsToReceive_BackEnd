@@ -13,6 +13,7 @@ namespace WebapiContas.Migrations
                 {
                     IdClient = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUser = table.Column<int>(nullable: false),
                     Phone = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true)
                 },
@@ -47,8 +48,8 @@ namespace WebapiContas.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    Token = table.Column<string>(nullable: true)
+                    PasswordHash = table.Column<byte[]>(nullable: true),
+                    PasswordSalt = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {

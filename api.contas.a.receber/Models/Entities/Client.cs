@@ -10,6 +10,7 @@ namespace WebapiContas.Models
     {
         [Key]
         public int IdClient { get; set; }
+        public int IdUser { get; set; }
         public string Phone { get; set; }
         public string Name { get; set; }
 
