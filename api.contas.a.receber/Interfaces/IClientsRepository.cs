@@ -11,6 +11,7 @@ namespace WebapiContas.Interfaces
     {
         void Add(Client client);
         IEnumerable<Client> GetAll();
+        IEnumerable<Client> GetByIdUser(long idUser);
         Client Find(long id);
         void Remove(long id);
         void Update(Client client);

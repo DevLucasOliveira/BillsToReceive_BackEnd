@@ -111,7 +111,7 @@ namespace WebapiContas
             }
 
 
-            //contasContext.Database.Migrate();
+
 
             //add swagger
             app.UseSwagger();

@@ -31,6 +31,11 @@ namespace WebapiContas.Repository
             return _context.Client.ToList();
         }
 
+        public IEnumerable<Client> GetByIdUser(long idUser) 
+        { 
+           return _context.Client.Where(w => w.IdUser == idUser);
+        }
+
         public void Remove(long id)
         {
             try

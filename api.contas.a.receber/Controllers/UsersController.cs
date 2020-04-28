@@ -56,10 +56,10 @@ namespace WebapiContas.Controllers
 
             return Ok(new
             {
-                Id = user.IdUser,
-                UserName = user.UserName,
-                FullName = user.FullName,
-                Token = tokenString
+                user.IdUser,
+                user.UserName,
+                user.FullName,
+                tokenString
             });
         }
 

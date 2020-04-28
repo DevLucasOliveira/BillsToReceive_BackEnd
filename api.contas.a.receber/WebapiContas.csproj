@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200423164338_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200423164338_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200423231038_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200423231038_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200424124126_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200424124126_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />

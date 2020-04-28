@@ -69,7 +69,17 @@ namespace WebapiContas.Controllers
             return new NoContentResult();
         }
 
+        [HttpGet("Users/{idUser}")]
+        public IActionResult GetByIdUser(long idUser)
+        {
+            var clients = _clientRepository.GetByIdUser(idUser);
 
+            if (clients == null)
+                return NotFound();
+
+
+            return new ObjectResult(clients);
+        }
 
     }
 }
