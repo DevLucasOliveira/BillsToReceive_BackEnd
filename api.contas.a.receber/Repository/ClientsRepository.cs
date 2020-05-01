@@ -10,9 +10,13 @@ namespace WebapiContas.Repository
     public class ClientsRepository : IClientsRepository
     {
         private readonly ContasContext _context;
-        public ClientsRepository(ContasContext ctx)
+
+        private readonly IOrdersRepository _ordersRepository;
+
+        public ClientsRepository(ContasContext context, IOrdersRepository ordersRepository)
         {
-            _context = ctx;
+            _context = context;
+            _ordersRepository = ordersRepository;
         }
 
         public void Add(Client client)
@@ -31,9 +35,19 @@ namespace WebapiContas.Repository
             return _context.Client.ToList();
         }
 
-        public IEnumerable<Client> GetByIdUser(long idUser) 
-        { 
-           return _context.Client.Where(w => w.IdUser == idUser);
+        public IEnumerable<Client> GetByIdUser(long idUser)
+        {
+            var clients = _context.Client.Where(w => w.IdUser == idUser);
+            foreach (var client in clients)
+            {
+                var orders = _ordersRepository.GetByIdClient(client.IdClient).ToList();
+                if (orders.Count != 0)
+                {
+                    client.LastOrderDate = orders[orders.Count - 1].Date;
+                    client.TotalOrders = orders.Sum(order => order.Total);
+                }
+            }
+            return clients;
         }
 
         public void Remove(long id)

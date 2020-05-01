@@ -17,7 +17,7 @@ namespace WebapiContas.Models
             options.UseSqlServer(Configuration.GetConnectionString("Contasdb"));
         }
 
-        public DbSet<Client> Client { get; set; }
+            public DbSet<Client> Client { get; set; }
             public DbSet<Order> Order { get; set; }
             public DbSet<User> User { get; set; }
          }
