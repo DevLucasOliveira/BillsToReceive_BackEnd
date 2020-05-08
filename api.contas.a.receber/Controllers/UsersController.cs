@@ -11,12 +11,14 @@ using WebapiContas.Interfaces;
 using AutoMapper;
 using WebapiContas.Helpers;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Cors;
 
 namespace WebapiContas.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[Controller]")]
     public class UsersController : ControllerBase
     {
         

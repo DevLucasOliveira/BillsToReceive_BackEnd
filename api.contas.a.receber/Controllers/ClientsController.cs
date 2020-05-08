@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebapiContas.Interfaces;
@@ -6,7 +8,8 @@ using WebapiContas.Models;
 
 namespace WebapiContas.Controllers
 {
-
+    [EnableCors("MyPolicy")]
+    [ApiController]
     [Route("api/[Controller]")]
 
     public class ClientsController : Controller

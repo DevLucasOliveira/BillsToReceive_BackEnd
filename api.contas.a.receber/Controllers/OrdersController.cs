@@ -1,5 +1,7 @@
 ﻿
 
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,8 @@ using WebapiContas.Repository;
 
 namespace WebapiContas.Controllers
 {
-
+    [EnableCors("MyPolicy")]
+    [ApiController]
     [Route("api/[Controller]")]
     public class OrdersController : Controller
     {
