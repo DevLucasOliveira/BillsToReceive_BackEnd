@@ -46,6 +46,7 @@ namespace WebapiContas
                     builder =>
                     {
                         builder.WithOrigins("https://master.d15j9ewhxlqaa0.amplifyapp.com")
+                       // builder.WithOrigins("http://localhost:4200")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod();
                     });
