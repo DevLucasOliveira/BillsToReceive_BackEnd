@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebapiContas.Models
+namespace WebapiContas.Models.Entities
 {
     public class Order
     {
         [Key]
         public int IdOrder { get; set; }
         public int IdClient { get; set; }
-        public string ProductName { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
-        public DateTime Date { get; set; }
         public decimal Total { get; set; }
-
+        public decimal Paid { get; set; }
+        [NotMapped]
+        public List<OrderItem> Items { get; set; }
     }
 }

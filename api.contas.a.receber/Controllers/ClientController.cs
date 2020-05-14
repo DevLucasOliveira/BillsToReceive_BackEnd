@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using WebapiContas.Interfaces;
 using WebapiContas.Models;
 
@@ -10,14 +8,14 @@ namespace WebapiContas.Controllers
 {
     [EnableCors("MyPolicy")]
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
 
-    public class ClientsController : Controller
+    public class ClientController : Controller
     {
 
-        private readonly IClientsRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public ClientsController(IClientsRepository contasRepo)
+        public ClientController(IClientRepository contasRepo)
         {
             _clientRepository = contasRepo;
         }
@@ -72,7 +70,7 @@ namespace WebapiContas.Controllers
             return new NoContentResult();
         }
 
-        [HttpGet("Users/{idUser}")]
+        [HttpGet("user/{idUser}")]
         public IActionResult GetByIdUser(long idUser)
         {
             var clients = _clientRepository.GetByIdUser(idUser);
@@ -80,6 +78,7 @@ namespace WebapiContas.Controllers
             if (clients == null)
                 return NotFound();
 
+            
 
             return new ObjectResult(clients);
         }

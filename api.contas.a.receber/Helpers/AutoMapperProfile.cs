@@ -13,7 +13,7 @@ namespace WebapiContas.Helpers
             CreateMap<UpdateModel, User>();
             CreateMap<UserModel, Client>();
             CreateMap<Client, ClientModel>();
-            CreateMap<Order, OrderModel>();
+            CreateMap<OrderItem, OrderModel>();
         }
             
     }

@@ -1,33 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebapiContas.Interfaces;
 using WebapiContas.Models;
+using WebapiContas.Models.Entities;
 
 namespace WebapiContas.Repository
 {
-    public class ClientsRepository : IClientsRepository
+    public class ClientRepository : IClientRepository
     {
         private readonly ContasContext _context;
 
-        private readonly IOrdersRepository _ordersRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public ClientsRepository(ContasContext context, IOrdersRepository ordersRepository)
+        public ClientRepository(ContasContext context, IOrderRepository orderRepository)
         {
             _context = context;
-            _ordersRepository = ordersRepository;
+            _orderRepository = orderRepository;
         }
 
         public void Add(Client client)
         {
             _context.Client.Add(client);
             _context.SaveChanges();
+            var order = new Order();
+            order.IdClient = client.IdClient;
+            _orderRepository.Add(order);
         }
 
         public Client Find(long id)
         {
-            return _context.Client.FirstOrDefault(u => u.IdClient == id);
+            var client = _context.Client.FirstOrDefault(u => u.IdClient == id);
+            client.Orders = _orderRepository.GetByIdClient(client.IdClient).ToList();
+            return client;
         }
 
         public IEnumerable<Client> GetAll()
@@ -40,12 +45,7 @@ namespace WebapiContas.Repository
             var clients = _context.Client.Where(w => w.IdUser == idUser);
             foreach (var client in clients)
             {
-                var orders = _ordersRepository.GetByIdClient(client.IdClient).ToList();
-                if (orders.Count != 0)
-                {
-                    client.LastOrderDate = orders[orders.Count - 1].Date;
-                    client.TotalOrders = orders.Sum(order => order.Total);
-                }
+                client.Orders = _orderRepository.GetByIdClient(client.IdClient).ToList();
             }
             return clients;
         }

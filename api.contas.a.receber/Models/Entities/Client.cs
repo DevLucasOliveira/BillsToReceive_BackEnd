@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using WebapiContas.Models.Entities;
 
 namespace WebapiContas.Models
 {
@@ -15,9 +14,7 @@ namespace WebapiContas.Models
         public string Phone { get; set; }
         public string Name { get; set; }
         [NotMapped]
-        public DateTime? LastOrderDate { get; set; }
-        [NotMapped]
-        public decimal TotalOrders { get; set; }
+        public List<Order> Orders{ get; set; }
 
     }
 }

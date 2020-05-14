@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
 using WebapiContas.Models;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace WebapiContas.Interfaces
 {
-    public interface IClientsRepository
+    public interface IClientRepository
     {
         void Add(Client client);
         IEnumerable<Client> GetAll();

@@ -1,31 +1,27 @@
-﻿
-
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using WebapiContas.Interfaces;
 using WebapiContas.Models;
-using WebapiContas.Repository;
 
 namespace WebapiContas.Controllers
 {
     [EnableCors("MyPolicy")]
     [ApiController]
-    [Route("api/[Controller]")]
-    public class OrdersController : Controller
+    [Route("api/[controller]")]
+    public class OrderItemController : Controller
     {
 
-        private readonly IOrdersRepository _orderRepository;
+        private readonly IOrderItemRepository _orderRepository;
 
-        public OrdersController(IOrdersRepository contasRepo)
+        public OrderItemController(IOrderItemRepository contasRepo)
         {
             _orderRepository = contasRepo;
         }
 
         [HttpGet]
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<OrderItem> GetAll()
         {
             return _orderRepository.GetAll();
         }
@@ -43,7 +39,7 @@ namespace WebapiContas.Controllers
 
 
         [HttpPost]
-        public IActionResult Create([FromBody] Order order)
+        public IActionResult Create([FromBody] OrderItem order)
         {
             if (order == null)
                 return BadRequest();
@@ -55,7 +51,7 @@ namespace WebapiContas.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] Order order)
+        public IActionResult Update([FromBody] OrderItem order)
         {
 
             if (order == null)
@@ -73,10 +69,10 @@ namespace WebapiContas.Controllers
             return new NoContentResult();
         }
 
-        [HttpDelete("clients/{idClient}")]
-        public IActionResult DeleteOrdersOfClient(long idClient)
+        [HttpDelete("orders/{idOrder}")]
+        public IActionResult DeleteOrderOfOrder(long idOrder)
         {
-            var orders = _orderRepository.GetAll().Where(w => w.IdClient == idClient);
+            var orders = _orderRepository.GetAll().Where(w => w.IdOrder == idOrder);
 
             if (orders == null)
                 return NotFound();
@@ -90,10 +86,10 @@ namespace WebapiContas.Controllers
 
         }
 
-        [HttpGet("clients/{idClient}")]
-        public IActionResult GetByIdClient(long idClient)
+        [HttpGet("orders/{idOrder}")]
+        public IActionResult GetByIdOrder(long idOrder)
         {
-            var orders = _orderRepository.GetByIdClient(idClient);
+            var orders = _orderRepository.GetByIdOrderItem(idOrder);
 
             if (orders == null)
                 return NotFound();
