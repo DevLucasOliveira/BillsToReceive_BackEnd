@@ -45,8 +45,8 @@ namespace WebapiContas
                 options.AddPolicy(name: "MyPolicy",
                     builder =>
                     {
-                        builder.WithOrigins("https://master.d15j9ewhxlqaa0.amplifyapp.com")
-                       // builder.WithOrigins("http://localhost:4200")
+                        //builder.WithOrigins("https://master.d15j9ewhxlqaa0.amplifyapp.com")
+                        builder.WithOrigins("http://localhost:4200")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod();
                     });
@@ -64,9 +64,9 @@ namespace WebapiContas
 
             //DI
             services.AddScoped<IUserService, UserService>();
-            services.AddTransient<IClientsRepository, ClientsRepository>();
-            services.AddTransient<IOrdersRepository, OrdersRepository>();
-
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
 
             //add Jwt
