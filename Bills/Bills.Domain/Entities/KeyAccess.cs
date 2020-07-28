@@ -2,13 +2,14 @@
 
 namespace Bills.Domain.Entities
 {
-    public class KeyAcess : Entity
+    public class KeyAccess : Entity
     {
-        public KeyAcess(string key)
+        public KeyAccess(string key)
         {
             Key = key;
         }
 
         public string Key { get; private set; }
+        public bool ValidKey { get; private set; }
     }
 }
