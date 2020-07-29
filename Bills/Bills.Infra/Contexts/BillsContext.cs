@@ -1,4 +1,5 @@
 ﻿using Bills.Domain.Entities;
+using Flunt.Notifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bills.Infra.Contexts
@@ -13,6 +14,12 @@ namespace Bills.Infra.Contexts
         public DbSet<OrderItem> OrderItem { get; set; }
         public DbSet<Admin> Admin { get; set; }
         public DbSet<KeyAccess> KeyAccess { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<Notification>();
+        }
+
 
     }
 }

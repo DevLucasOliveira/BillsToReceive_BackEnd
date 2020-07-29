@@ -7,13 +7,18 @@ namespace Bills.Domain.Entities
 {
     public class User : Entity
     {
-        public User(string name, string userName, Password password, KeyAccess keyAccess)
+        public User()
+        {
+
+        }
+
+        public User(string name, string userName, Password password)
         {
             Name = name;
             UserName = userName;
             PasswordSalt = password.PasswordSalt;
             PasswordHash = password.PasswordHash;
-            KeyAccess = keyAccess;
+     //       KeyAccess = keyAccess;
         }
 
         public string Name { get; private set; }
