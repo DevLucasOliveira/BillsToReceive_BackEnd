@@ -1,6 +1,6 @@
-﻿using Bills.Domain.Entities;
-using Bills.Domain.Queries;
-using Bills.Domain.Repositories;
+﻿using Bills.Domain.Orders.Entities;
+using Bills.Domain.Orders.Queries;
+using Bills.Domain.Orders.Repositories;
 using Bills.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;

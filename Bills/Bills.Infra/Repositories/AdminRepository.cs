@@ -1,6 +1,6 @@
-﻿using Bills.Domain.Entities;
-using Bills.Domain.Queries;
-using Bills.Domain.Repositories;
+﻿using Bills.Domain.Admin.Entities;
+using Bills.Domain.Admin.Queries;
+using Bills.Domain.Admin.Repositories;
 using Bills.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,13 +17,13 @@ namespace Bills.Infra.Repositories
             _context = context;
         }
 
-        public void Create(Admin admin)
+        public void Create(UserAdmin admin)
         {
             _context.Admin.Add(admin);
             _context.SaveChanges();
         }
 
-        public Admin GetAdmin(Guid id)
+        public UserAdmin GetAdmin(Guid id)
         {
             return _context.Admin.AsNoTracking().FirstOrDefault(AdminQueries.GetAdminById(id));
         }
@@ -35,7 +35,7 @@ namespace Bills.Infra.Repositories
             _context.SaveChanges();
         }
 
-        public void Update(Admin admin)
+        public void Update(UserAdmin admin)
         {
             _context.Entry(admin).State = EntityState.Modified;
             _context.SaveChanges();

@@ -1,8 +1,11 @@
 using Bills.Api.Services;
 using Bills.Api.Utils;
-using Bills.Domain.Handlers;
-using Bills.Domain.Repositories;
-using Bills.Domain.Services;
+using Bills.Domain.Account.Handlers;
+using Bills.Domain.Account.Repositories;
+using Bills.Domain.Account.Services;
+using Bills.Domain.Admin.Repositories;
+using Bills.Domain.Clients.Repositories;
+using Bills.Domain.Orders.Repositories;
 using Bills.Infra.Contexts;
 using Bills.Infra.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

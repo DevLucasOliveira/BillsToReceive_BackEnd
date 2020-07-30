@@ -1,6 +1,6 @@
-﻿using Bills.Domain.Commands;
-using Bills.Domain.Commands.Users;
-using Bills.Domain.Handlers;
+﻿using Bills.Domain.Account.Commands;
+using Bills.Domain.Account.Handlers;
+using Bills.Domain.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bills.Api.Controllers

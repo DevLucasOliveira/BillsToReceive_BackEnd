@@ -1,6 +1,6 @@
 ﻿using Bills.Api.Utils;
-using Bills.Domain.Entities;
-using Bills.Domain.Services;
+using Bills.Domain.Account.Entities;
+using Bills.Domain.Account.Services;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
