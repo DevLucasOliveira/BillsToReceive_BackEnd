@@ -3,6 +3,7 @@ using Bills.Api.Utils;
 using Bills.Domain.Account.Handlers;
 using Bills.Domain.Account.Repositories;
 using Bills.Domain.Account.Services;
+using Bills.Domain.Admin.Handlers;
 using Bills.Domain.Admin.Repositories;
 using Bills.Domain.Clients.Repositories;
 using Bills.Domain.Orders.Repositories;
@@ -75,6 +76,8 @@ namespace bills.api
             services.AddScoped<IKeyAccessRepository, KeyAccessRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<UserHandler, UserHandler>();
+            services.AddScoped<AdminHandler, AdminHandler>();
+            services.AddScoped<KeyAccessHandler, KeyAccessHandler>();
             services.AddScoped<ITokenService, TokenService>();
 
             // JWT
