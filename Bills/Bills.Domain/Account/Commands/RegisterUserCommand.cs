@@ -16,6 +16,7 @@ namespace Bills.Domain.Account.Commands
         public string Name { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string KeyAccess { get; set; }
 
         public void Validate()
         {

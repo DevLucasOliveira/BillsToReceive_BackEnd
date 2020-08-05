@@ -10,5 +10,21 @@ namespace Bills.Domain.Admin.Queries
         {
             return x => x.Id == id;
         }
+
+        public static Expression<Func<KeyAccess, bool>> ExistsKeyAccess(string keyAccess)
+        {
+            return x => x.Key == keyAccess && x.ValidKey == true && x.User == false;
+        }
+
+        public static Expression<Func<KeyAccess, bool>> GetKeyAccess(string keyAccess)
+        {
+            return x => x.Key == keyAccess;
+        }
+
+        public static Expression<Func<KeyAccess, bool>> ValidKeyAccess(string keyAccess)
+        {
+            return x => x.Key == keyAccess && x.ValidKey == true && x.User == true;
+        }
+
     }
 }

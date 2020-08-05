@@ -20,7 +20,6 @@ namespace Bills.Domain.Account.Entities
             UserName = userName;
             PasswordSalt = password.PasswordSalt;
             PasswordHash = password.PasswordHash;
-     //       KeyAccess = keyAccess;
         }
 
         public string Name { get; private set; }
@@ -30,5 +29,11 @@ namespace Bills.Domain.Account.Entities
         public KeyAccess KeyAccess { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public List<Client> Clients { get; private set; }
+
+        public void AddKeyAccess(KeyAccess keyAccess)
+        {
+            KeyAccess = keyAccess;
+            KeyAccess.HasUser();
+        }
     }
 }

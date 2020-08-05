@@ -5,12 +5,12 @@ namespace Bills.Domain.Admin.Commands
 {
     public class CreateAdminCommand : Notifiable, ICommand
     {
-        public CreateAdminCommand(decimal pin)
+        public CreateAdminCommand(long pin)
         {
             Pin = pin;
         }
 
-        public decimal Pin { get; set; } 
+        public long Pin { get; set; } 
         public void Validate() {} 
     }
 }

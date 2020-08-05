@@ -4,6 +4,7 @@ using Bills.Domain.Account.Repositories;
 using Bills.Infra.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Bills.Infra.Repositories
@@ -17,9 +18,9 @@ namespace Bills.Infra.Repositories
             _context = context;
         }
 
-        public User Authenticate(string userName)
+        public IEnumerable<User> Authenticate(string userName)
         {
-            return _context.User.AsNoTracking().SingleOrDefault(UserQueries.UserNameExists(userName));
+            return _context.User.AsNoTracking().Where(UserQueries.UserNameExists(userName)).Include(u => u.KeyAccess);
         }
 
         public User GetUserById(Guid id)
@@ -37,7 +38,7 @@ namespace Bills.Infra.Repositories
         {
             var entity = _context.User.Find(UserQueries.GetUserById(id));
             _context.User.Remove(entity);
-            _context.SaveChanges();   
+            _context.SaveChanges();
         }
 
         public void Update(User user)

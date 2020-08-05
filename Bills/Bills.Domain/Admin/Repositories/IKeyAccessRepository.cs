@@ -8,5 +8,8 @@ namespace Bills.Domain.Admin.Repositories
         void Create(KeyAccess keyAccess);
         void Update(KeyAccess keyAccess);
         void Remove(Guid id);
+        KeyAccess GetKeyAccess(string keyAcess);
+        bool KeyAccessExists(string keyAccess);
+        bool ValidKeyAccess(string keyAccess);
     }
 }

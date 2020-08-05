@@ -12,7 +12,7 @@ namespace Bills.Domain.Admin.Entities
 
         public string Key { get; private set; }
         public bool ValidKey { get; private set; }
-
+        public bool User { get; private set; }
 
         public string GenerateKeyAccess()
         {
@@ -35,6 +35,16 @@ namespace Bills.Domain.Admin.Entities
         public void InvalidateKey()
         {
             ValidKey = false;
+        }
+
+        public void HasUser()
+        {
+            User = true;
+        }
+
+        public void NoHasUser()
+        {
+            User = false;
         }
     }
 }

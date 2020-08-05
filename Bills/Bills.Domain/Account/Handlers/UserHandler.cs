@@ -3,10 +3,12 @@ using Bills.Domain.Account.Entities;
 using Bills.Domain.Account.Repositories;
 using Bills.Domain.Account.Services;
 using Bills.Domain.Account.ValueObjects;
+using Bills.Domain.Admin.Repositories;
 using Bills.Domain.Commands;
 using Bills.Shared.Commands;
 using Bills.Shared.Handlers;
 using Flunt.Notifications;
+using System.Linq;
 
 namespace Bills.Domain.Account.Handlers
 {
@@ -14,11 +16,13 @@ namespace Bills.Domain.Account.Handlers
     {
         private readonly IUserRepository _userRepository;
         private readonly ITokenService _tokenService;
+        private readonly IKeyAccessRepository _keyAccessRepository;
 
-        public UserHandler(IUserRepository userRepository, ITokenService tokenService)
+        public UserHandler(IUserRepository userRepository, ITokenService tokenService, IKeyAccessRepository keyAccessRepository)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
+            _keyAccessRepository = keyAccessRepository;
         }
 
         public ICommandResult Handle(RegisterUserCommand command)
@@ -32,16 +36,29 @@ namespace Bills.Domain.Account.Handlers
             if (_userRepository.UserNameExists(command.UserName))
                 return new GenericCommandResult(false, "Usuário já existe", command.UserName);
 
+            // Verificar se a chave de acesso é valida
+            if (!_keyAccessRepository.KeyAccessExists(command.KeyAccess))
+                return new GenericCommandResult(false, "Chave de acesso inválida", command.UserName);
+
+            // Recuperar a chave de acesso
+            var keyAccess = _keyAccessRepository.GetKeyAccess(command.KeyAccess);
+
             // Gerar o VO
             var password = new Password(command.Password);
             if(password.Invalid)
                 return new GenericCommandResult(false, "Senha inválida", password.Notifications);
 
-            // Gerar as senhas cripttografadas
+            // Gerar as senhas criptografadas
             password.CreatePasswordHash(command.Password);
 
             // Gerar a entidade
             var user = new User(command.Name, command.UserName, password);
+
+            // Adicionar a chave de acesso ao relacionamento
+            user.AddKeyAccess(keyAccess);
+
+            // Salvar no banco
+            _keyAccessRepository.Update(keyAccess);
 
             // Salvar no banco
             _userRepository.Register(user);
@@ -58,7 +75,7 @@ namespace Bills.Domain.Account.Handlers
                 return new GenericCommandResult(false, "Erro ao autenticar o usuário", command.Notifications);
 
             // Recuperar o usuário
-            var user = _userRepository.Authenticate(command.UserName);
+            var user = _userRepository.Authenticate(command.UserName).First();
 
             // Verificar se o usuário existe
             if (user == null)
@@ -70,6 +87,10 @@ namespace Bills.Domain.Account.Handlers
             // Verificar se as senhas são iguais
             if (!password)
                 return new GenericCommandResult(false, "Senha incorreta", Notifications);
+
+            // Verifica se a chave de acesso está validá
+            if (!_keyAccessRepository.ValidKeyAccess(user.KeyAccess.Key))
+                return new GenericCommandResult(false, "Chave de acesso inválida", command.UserName);
 
             // Agrupar as validações
             AddNotifications(user);

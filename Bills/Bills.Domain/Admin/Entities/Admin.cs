@@ -10,12 +10,12 @@ namespace Bills.Domain.Admin.Entities
         {
 
         }
-        public UserAdmin(decimal pin)
+        public UserAdmin(long pin)
         {
             Pin = pin;
         }
 
-        public decimal Pin { get; private set; }
+        public long Pin { get; private set; }
         public List<User> Users { get; private set; }
         public List<KeyAccess> KeyAccesses { get; private set; }
     }
