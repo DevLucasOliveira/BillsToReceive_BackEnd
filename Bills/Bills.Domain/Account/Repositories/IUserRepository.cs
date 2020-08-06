@@ -8,7 +8,10 @@ namespace Bills.Domain.Account.Repositories
     {
         IEnumerable<User> Authenticate(string user);
         bool UserNameExists(string userName);
-        User GetUserById(Guid id);
+        bool UserExists(Guid id);
+       /// User GetUserById(Guid id);
+        IEnumerable<User> GetUserById(Guid id);
+
         void Register(User user);
         void Update(User user);
         void Remove(Guid id);

@@ -1,4 +1,5 @@
-﻿using Bills.Domain.Orders.Entities;
+﻿using Bills.Domain.Account.Entities;
+using Bills.Domain.Orders.Entities;
 using Bills.Shared.Entities;
 using System;
 
@@ -21,6 +22,7 @@ namespace Bills.Domain.Clients.Entities
         public string CellPhone { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public Order Order { get; private set; }
+        public User User { get; private set; }
 
     }
 }

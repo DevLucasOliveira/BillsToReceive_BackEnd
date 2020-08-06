@@ -9,5 +9,6 @@ namespace Bills.Domain.Clients.Repositories
         void Update(Client client); 
         void Remove(Guid id);
         Client GetClientById(Guid id);
+        bool NameAlreadyExists(Guid id, string name);
     }
 }

@@ -5,6 +5,7 @@ using Bills.Domain.Account.Repositories;
 using Bills.Domain.Account.Services;
 using Bills.Domain.Admin.Handlers;
 using Bills.Domain.Admin.Repositories;
+using Bills.Domain.Clients.Handlers;
 using Bills.Domain.Clients.Repositories;
 using Bills.Domain.Orders.Repositories;
 using Bills.Infra.Contexts;
@@ -77,6 +78,7 @@ namespace bills.api
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<UserHandler, UserHandler>();
             services.AddScoped<AdminHandler, AdminHandler>();
+            services.AddScoped<ClientHandler, ClientHandler>();
             services.AddScoped<KeyAccessHandler, KeyAccessHandler>();
             services.AddScoped<ITokenService, TokenService>();
 

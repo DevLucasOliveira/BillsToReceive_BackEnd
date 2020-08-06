@@ -28,6 +28,11 @@ namespace Bills.Infra.Repositories
             return _context.Client.AsNoTracking().FirstOrDefault(ClientQueries.GetClientById(id));
         }
 
+        public bool NameAlreadyExists(Guid id, string name)
+        {
+            return _context.Client.AsNoTracking().Any(ClientQueries.ExistsNameOfClient(id, name));
+        }
+
         public void Remove(Guid id)
         {
             var entity = _context.Client.Find(ClientQueries.GetClientById(id));

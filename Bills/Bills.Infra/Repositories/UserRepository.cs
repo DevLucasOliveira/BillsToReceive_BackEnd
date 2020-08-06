@@ -23,9 +23,14 @@ namespace Bills.Infra.Repositories
             return _context.User.AsNoTracking().Where(UserQueries.UserNameExists(userName)).Include(u => u.KeyAccess);
         }
 
-        public User GetUserById(Guid id)
+        //public User GetUserById(Guid id)
+        //{
+        //    return _context.User.AsNoTracking().FirstOrDefault(UserQueries.GetUserById(id));
+        //}
+
+        public IEnumerable<User> GetUserById(Guid id)
         {
-            return _context.User.AsNoTracking().FirstOrDefault(UserQueries.GetUserById(id));
+            return _context.User.AsNoTracking().Where(UserQueries.GetUserById(id)).Include(u => u.Clients).ToList();
         }
 
         public void Register(User user)
@@ -45,6 +50,11 @@ namespace Bills.Infra.Repositories
         {
             _context.Entry(user).State = EntityState.Modified;
             _context.SaveChanges();
+        }
+
+        public bool UserExists(Guid id)
+        {
+            return _context.User.AsNoTracking().Any(UserQueries.UserExists(id));
         }
 
         public bool UserNameExists(string userName)

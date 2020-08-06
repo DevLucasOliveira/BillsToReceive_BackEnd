@@ -5,7 +5,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Clients\Handlers\" />
     <Folder Include="Orders\Commands\" />
     <Folder Include="Orders\Handlers\" />
   </ItemGroup>

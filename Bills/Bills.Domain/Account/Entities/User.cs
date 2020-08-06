@@ -16,10 +16,12 @@ namespace Bills.Domain.Account.Entities
 
         public User(string name, string userName, Password password)
         {
+            Clients = new List<Client>();
             Name = name;
             UserName = userName;
             PasswordSalt = password.PasswordSalt;
             PasswordHash = password.PasswordHash;
+            CreatedAt = DateTime.Now;
         }
 
         public string Name { get; private set; }
@@ -34,6 +36,14 @@ namespace Bills.Domain.Account.Entities
         {
             KeyAccess = keyAccess;
             KeyAccess.HasUser();
+        }
+
+        public IList<Client> AddClient(Client client)
+        {
+            if (client.Valid)
+                Clients.Add(client);
+
+            return Clients;
         }
     }
 }

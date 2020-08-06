@@ -10,10 +10,16 @@ namespace Bills.Domain.Account.Queries
         {
             return x => x.UserName == userName;
         }
+        public static Expression<Func<User, bool>> UserExists(Guid id)
+        {
+            return x => x.Id == id;
+        }
 
         public static Expression<Func<User, bool>> GetUserById(Guid id)
         {
             return x => x.Id == id;
         }
+
+
     }
 }

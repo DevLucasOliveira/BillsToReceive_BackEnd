@@ -10,5 +10,10 @@ namespace Bills.Domain.Clients.Queries
         {
             return x => x.Id == id;
         }
+
+        public static Expression<Func<Client, bool>> ExistsNameOfClient(Guid id, string name)
+        {
+            return x => x.User.Id == id && x.Name == name;
+        }
     }
 }
