@@ -1,12 +1,14 @@
 ﻿using Bills.Domain.Account.Commands;
 using Bills.Domain.Account.Handlers;
 using Bills.Domain.Commands;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bills.Api.Controllers
 {
     [Route("v1/users")]
     [ApiController]
+    [EnableCors("MyPolicy")]
     public class UserController : ControllerBase
     {
 

@@ -75,11 +75,14 @@ namespace Bills.Domain.Account.Handlers
                 return new GenericCommandResult(false, "Erro ao autenticar o usuário", command.Notifications);
 
             // Recuperar o usuário
-            var user = _userRepository.Authenticate(command.UserName).First();
+            var userVerify = _userRepository.Authenticate(command.UserName);
 
             // Verificar se o usuário existe
-            if (user == null)
-                return new GenericCommandResult(false, "Erro ao autenticar o usuário", command.Notifications);
+            if (userVerify.Count() == 0)
+                return new GenericCommandResult(false, "Usuário inválido", command.Notifications);
+
+            // Retornando o usuário
+            var user = userVerify.First();
 
             // Verificar a senha criptografada
             var password = Password.VerifyPasswordHash(command.Password, user.PasswordHash, user.PasswordSalt);
