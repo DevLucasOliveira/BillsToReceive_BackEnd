@@ -118,14 +118,19 @@ namespace bills.api
                 app.UseDeveloperExceptionPage();
             }
 
-
             app.UseHttpsRedirection();
 
-            app.UseSwagger();
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "docs/swagger/{documentName}/swagger.json";
+            });
+
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bills");
+            c.SwaggerEndpoint("/docs/swagger/v1/swagger.json", "Bills");
+            c.RoutePrefix = "docs/swagger";
             });
+
 
             app.UseRouting();
 
