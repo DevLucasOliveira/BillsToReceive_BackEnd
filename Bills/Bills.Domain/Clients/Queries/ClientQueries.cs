@@ -15,5 +15,15 @@ namespace Bills.Domain.Clients.Queries
         {
             return x => x.User.Id == id && x.Name == name;
         }
+
+        public static Expression<Func<Client, bool>> GetClientsOfUser(Guid id)
+        {
+            return x => x.User.Id == id;
+        }
+
+        public static Expression<Func<Client, bool>> GetClientByIdUser(Guid id)
+        {
+            return x => x.User.Id == id;
+        }
     }
 }

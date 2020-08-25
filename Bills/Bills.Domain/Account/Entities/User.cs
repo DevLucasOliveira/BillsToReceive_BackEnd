@@ -28,6 +28,7 @@ namespace Bills.Domain.Account.Entities
         public string UserName { get; private set; }
         public byte[] PasswordHash { get; private set; }
         public byte[] PasswordSalt { get; private set; }
+        public string Token { get; private set; }
         public KeyAccess KeyAccess { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public List<Client> Clients { get; private set; }
@@ -44,6 +45,11 @@ namespace Bills.Domain.Account.Entities
                 Clients.Add(client);
 
             return Clients;
+        }
+
+        public void AddToken(string token)
+        {
+            Token = token;
         }
     }
 }

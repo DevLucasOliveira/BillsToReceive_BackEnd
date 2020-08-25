@@ -105,8 +105,11 @@ namespace Bills.Domain.Account.Handlers
             // Gerar o token
             var token = _tokenService.GenerateToken(user);
 
+            // Adicionar o Token
+            user.AddToken(token);
+
             // Retornar informações
-            return new GenericCommandResult(true, "Usuário cadastrado com sucesso", token);
+            return new GenericCommandResult(true, "Usuário cadastrado com sucesso", user);
 
         }
     }

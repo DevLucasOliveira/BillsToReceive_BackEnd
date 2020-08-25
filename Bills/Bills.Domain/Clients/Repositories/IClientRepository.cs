@@ -1,5 +1,6 @@
 ﻿using Bills.Domain.Clients.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Bills.Domain.Clients.Repositories
 {
@@ -10,5 +11,6 @@ namespace Bills.Domain.Clients.Repositories
         void Remove(Guid id);
         Client GetClientById(Guid id);
         bool NameAlreadyExists(Guid id, string name);
+        IEnumerable<Client> GetClientsOfUser(Guid id);
     }
 }
