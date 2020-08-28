@@ -41,7 +41,7 @@ namespace Bills.Infra.Repositories
 
         public void Remove(Guid id)
         {
-            var entity = _context.Client.FirstOrDefault(ClientQueries.GetClientByIdUser(id));
+            var entity = _context.Client.FirstOrDefault(ClientQueries.GetClientById(id));
             _context.Client.Remove(entity);
             _context.SaveChanges();
         }
