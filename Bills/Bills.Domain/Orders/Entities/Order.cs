@@ -11,9 +11,9 @@ namespace Bills.Domain.Orders.Entities
 
         }
 
-        public Order(List<OrderItem> items)
+        public Order(OrderItem item)
         {
-            Items = items;
+            Items.Add(item);
         }
 
         public List<OrderItem> Items { get; private set; }
@@ -25,7 +25,7 @@ namespace Bills.Domain.Orders.Entities
             decimal total = 0;
             foreach (var item in Items)
             {
-                total += item.Total();
+                total += item.Total;
             }
 
             return total;

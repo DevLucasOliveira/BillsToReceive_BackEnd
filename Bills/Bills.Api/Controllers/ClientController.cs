@@ -12,7 +12,7 @@ namespace Bills.Api.Controllers
     [ApiController]
     [EnableCors("MyPolicy")]
 
-    public class ClientController : Controller
+    public class ClientController : ControllerBase
     {
         [HttpPost]
         [Route("")]
