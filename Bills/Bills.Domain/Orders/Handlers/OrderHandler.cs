@@ -6,6 +6,7 @@ using Bills.Domain.Orders.Repositories;
 using Bills.Shared.Commands;
 using Bills.Shared.Handlers;
 using Flunt.Notifications;
+using System.Linq;
 
 namespace Bills.Domain.Orders.Handlers
 {
@@ -15,8 +16,9 @@ namespace Bills.Domain.Orders.Handlers
         private readonly IOrderItemRepository _orderItemRepository;
         private readonly IClientRepository _clientRepository;
 
-        public OrderHandler(IOrderItemRepository orderItemRepository, IClientRepository clientRepository)
+        public OrderHandler(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IClientRepository clientRepository)
         {
+            _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
             _clientRepository = clientRepository;
         }
@@ -29,17 +31,18 @@ namespace Bills.Domain.Orders.Handlers
                 return new GenericCommandResult(false, "Ocorreu um erro", command.Notifications);
 
             // Recuperar o cliente
-            var client = _clientRepository.GetClientById(command.Client);
+            var client = _clientRepository.GetClientById(command.Client).First();
+
+            // Verificar se o cliente existe
+            if (client == null)
+                return new GenericCommandResult(false, "Cliente inválido", client);
 
             // Gerar a entidade
             var orderItem = new OrderItem(command.Product, command.Price, command.Quantity);
-            var order = new Order(orderItem);
-
-            // Adicionar o pedido do cliente
-            client.AddOrder(order);
+            client.Order.AddItems(orderItem);
 
             // Agrupar notificações
-            AddNotifications(orderItem, order, order);
+            AddNotifications(orderItem, client);
 
             // Verificar se há erros
             if (Invalid)
@@ -47,8 +50,8 @@ namespace Bills.Domain.Orders.Handlers
 
             // Salvar no banco
             _clientRepository.Update(client);
-            _orderRepository.Create(order);
-            foreach (var item in order.Items)
+            _orderRepository.Update(client.Order);
+            foreach (var item in client.Order.Items)
             {
                 _orderItemRepository.Create(item);
             }

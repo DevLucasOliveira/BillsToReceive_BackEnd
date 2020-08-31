@@ -6,14 +6,10 @@ namespace Bills.Domain.Orders.Entities
 {
     public class Order : Entity
     {
+
         public Order()
         {
-
-        }
-
-        public Order(OrderItem item)
-        {
-            Items.Add(item);
+            Items = new List<OrderItem>();
         }
 
         public List<OrderItem> Items { get; private set; }
@@ -29,6 +25,14 @@ namespace Bills.Domain.Orders.Entities
             }
 
             return total;
+        }
+
+        public IList<OrderItem> AddItems(OrderItem item)
+        {
+            if (item.Valid)
+                Items.Add(item);
+
+            return Items;
         }
     }
 }

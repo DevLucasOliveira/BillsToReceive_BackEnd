@@ -17,6 +17,7 @@ namespace Bills.Domain.Clients.Entities
             Name = name;
             CellPhone = cellPhone;
             CreatedAt = DateTime.Now;
+            Order = new Order();
         }
 
         public string Name { get; private set; }
@@ -24,12 +25,6 @@ namespace Bills.Domain.Clients.Entities
         public DateTime CreatedAt { get; private set; }
         public Order Order { get; private set; }
         public User User { get; private set; }
-
-
-        public void AddOrder(Order order)
-        {
-            Order = order;
-        }
 
     }
 }
