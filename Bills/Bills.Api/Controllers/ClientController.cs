@@ -42,5 +42,14 @@ namespace Bills.Api.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [Route("get/{idClient}")]
+        public IActionResult GetClientById(
+            string idClient,
+            [FromServices] IClientRepository repository)
+        {
+            return Ok(repository.GetClientById(new Guid(idClient)));
+        }
+
     }
 }

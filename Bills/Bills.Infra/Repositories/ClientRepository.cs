@@ -26,7 +26,7 @@ namespace Bills.Infra.Repositories
 
         public IEnumerable<Client> GetClientById(Guid id)
         {
-            return _context.Client.AsNoTracking().Where(ClientQueries.GetClientById(id)).Include(x => x.Order);
+            return _context.Client.AsNoTracking().Where(ClientQueries.GetClientById(id)).Include(x => x.Order).ThenInclude(x => x.Items);
         }
 
         public IEnumerable<Client> GetClientsOfUser(Guid id)
