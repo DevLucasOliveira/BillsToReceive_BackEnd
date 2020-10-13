@@ -4,11 +4,6 @@
     <ProjectReference Include="..\Bills.Shared\Bills.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Orders\Commands\" />
-    <Folder Include="Orders\Handlers\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>

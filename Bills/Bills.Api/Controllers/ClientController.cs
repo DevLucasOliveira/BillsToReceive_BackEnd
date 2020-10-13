@@ -12,7 +12,7 @@ namespace Bills.Api.Controllers
     [ApiController]
     [EnableCors("MyPolicy")]
 
-    public class ClientController : Controller
+    public class ClientController : ControllerBase
     {
         [HttpPost]
         [Route("")]
@@ -40,6 +40,15 @@ namespace Bills.Api.Controllers
         {
             repository.Remove(new Guid(idClient));
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("get/{idClient}")]
+        public IActionResult GetClientById(
+            string idClient,
+            [FromServices] IClientRepository repository)
+        {
+            return Ok(repository.GetClientById(new Guid(idClient)));
         }
 
     }

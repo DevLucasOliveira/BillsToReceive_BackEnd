@@ -16,6 +16,8 @@ namespace Bills.Domain.Clients.Entities
         {
             Name = name;
             CellPhone = cellPhone;
+            CreatedAt = DateTime.Now;
+            Order = new Order();
         }
 
         public string Name { get; private set; }

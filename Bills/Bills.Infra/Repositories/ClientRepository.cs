@@ -24,9 +24,9 @@ namespace Bills.Infra.Repositories
             _context.SaveChanges();
         }
 
-        public Client GetClientById(Guid id)
+        public IEnumerable<Client> GetClientById(Guid id)
         {
-            return _context.Client.AsNoTracking().FirstOrDefault(ClientQueries.GetClientById(id));
+            return _context.Client.AsNoTracking().Where(ClientQueries.GetClientById(id)).Include(x => x.Order).ThenInclude(x => x.Items);
         }
 
         public IEnumerable<Client> GetClientsOfUser(Guid id)
