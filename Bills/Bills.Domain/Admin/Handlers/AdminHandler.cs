@@ -19,18 +19,14 @@ namespace Bills.Domain.Admin.Handlers
 
         public ICommandResult Handle(CreateAdminCommand command)
         {
-            // Fail FastValidation
             command.Validate();
             if (Invalid)
                 return new GenericCommandResult(false, "Admin inválido", command.Notifications);
 
-            // Gerar a entidade
             var admin = new UserAdmin(command.Pin);
 
-            // Salvar no banco
             _adminRepository.Create(admin);
 
-            // Retornar informações
             return new GenericCommandResult(true, "Admin criado com sucesso", admin);
         }
     }

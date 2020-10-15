@@ -21,7 +21,6 @@ namespace Bills.Api.Controllers
             return (GenericCommandResult)handler.Handle(command);
         }
 
-
         [HttpPost]                
         [Route("keyaccess")]
         public GenericCommandResult CreateKeyAccess(

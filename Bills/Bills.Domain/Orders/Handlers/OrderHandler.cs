@@ -25,30 +25,23 @@ namespace Bills.Domain.Orders.Handlers
 
         public ICommandResult Handle(CreateOrderItemCommand command)
         {
-            // Fail Fast Validation
             command.Validate();
             if (Invalid)
                 return new GenericCommandResult(false, "Ocorreu um erro", command.Notifications);
 
-            // Recuperar o cliente
             var client = _clientRepository.GetClientById(command.Client).First();
 
-            // Verificar se o cliente existe
             if (client == null)
                 return new GenericCommandResult(false, "Cliente inválido", client);
 
-            // Gerar a entidade
             var orderItem = new OrderItem(command.Product, command.Price, command.Quantity);
             client.Order.AddItems(orderItem);
 
-            // Agrupar notificações
             AddNotifications(orderItem, client);
 
-            // Verificar se há erros
             if (Invalid)
                 return new GenericCommandResult(false, "Ocorreu um erro", Notifications);
 
-            // Salvar no banco
             _clientRepository.Update(client);
             _orderRepository.Update(client.Order);
             foreach (var item in client.Order.Items)
@@ -56,7 +49,6 @@ namespace Bills.Domain.Orders.Handlers
                 _orderItemRepository.Create(item);
             }
 
-            // Retornar informações
             return new GenericCommandResult(true, "Pedido criado com sucesso", client);
         }
     }

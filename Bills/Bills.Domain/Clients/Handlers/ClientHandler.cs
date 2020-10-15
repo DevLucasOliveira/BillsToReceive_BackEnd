@@ -23,42 +23,31 @@ namespace Bills.Domain.Clients.Handlers
 
         public ICommandResult Handle(CreateClientCommand command)
         {
-            // Fail Fast Validation
             command.Validate();
             if (Invalid)
                 return new GenericCommandResult(false, "Nome muito curto", command.Notifications);
 
-            // Verificar se o nome do cliente já existe
             if (_clientRepository.NameAlreadyExists(command.User, command.Name))
                 return new GenericCommandResult(false, "Cliente já cadastrado", command.Name);
 
-            // Verificar se o usuário existe
             if (!_userRepository.UserExists(command.User))
                 return new GenericCommandResult(false, "Usuário inválido", command.Notifications);
 
-            // Recuperar o usuário
             var user = _userRepository.GetUserById(command.User).First();
 
-            // Gerar a entidade
             var client = new Client(command.Name, command.Cellphone);
 
-            // Agrupar validações
             AddNotifications(client, user);
 
-            // Verificar se há algum erro
             if (Invalid)
                 return new GenericCommandResult(false, "Ocorreu um erro", Notifications);
 
-            // Adicionar o cliente na lista do usuário
             user.AddClient(client);
 
-            // Salvar no banco
             _userRepository.Update(user);
 
-            // Salvar no banco
             _clientRepository.Create(client);
 
-            // Retornar informações
             return new GenericCommandResult(true, "Cliente cadastrado com sucesso", user);
         }
     }

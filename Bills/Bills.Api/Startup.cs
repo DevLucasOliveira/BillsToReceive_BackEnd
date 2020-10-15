@@ -35,10 +35,8 @@ namespace bills.api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // CORS
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyPolicy",
@@ -52,25 +50,20 @@ namespace bills.api
                     });
             });
 
-            // Compression
             services.AddResponseCompression(options =>
             {
                 options.Providers.Add<GzipCompressionProvider>();
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "aplication/json" });
             });
 
-            // Controllers
             services.AddControllers();
 
-            // Compression Json
             services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
-            // Database
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
 
-            // Injection Dependency
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
@@ -84,7 +77,6 @@ namespace bills.api
             services.AddScoped<KeyAccessHandler, KeyAccessHandler>();
             services.AddScoped<ITokenService, TokenService>();
 
-            // JWT
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
             services.AddAuthentication(x =>
             {
@@ -104,7 +96,6 @@ namespace bills.api
                      };
                  });
 
-            // Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bills", Version = "v1" });
@@ -112,7 +103,6 @@ namespace bills.api
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
